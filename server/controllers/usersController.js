@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 const getAllUsers = asyncHandler(async (req, res) => {
     // Get all users from MongoDB
     const users = await User.find().select('-password').lean()
-
+    //const users = await User.find().lean()
     // If no users 
     if (!users?.length) {
         return res.status(400).json({ message: 'No users found' })
@@ -22,10 +22,12 @@ const getAllUsers = asyncHandler(async (req, res) => {
 // @route POST /users
 // @access Private
 const createNewUser = asyncHandler(async (req, res) => {
+    console.log(req.body)
     const { username, password, roles } = req.body
-
+    
     // Confirm data
     if (!username || !password || !Array.isArray(roles) || !roles.length) {
+        console.log(roles, username)
         return res.status(400).json({ message: 'All fields are required' })
     }
 
