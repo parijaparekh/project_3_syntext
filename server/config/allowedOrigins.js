@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://syntext.omrender.com'
+    'https://syntext.onrender.com'
 ]
 
 module.exports = allowedOrigins
