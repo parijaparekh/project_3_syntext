@@ -6,7 +6,10 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 // for redux, rtk 
 import {store} from './app/store'
 import {Provider} from 'react-redux'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import {disableReactDevTools} from '@fvillers/disable-react-dev-tools';
 
+if (process.env.NODE_ENV === "production") disableReactDevTools();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -19,4 +22,5 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+serviceWorkerRegistration.register();
 

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { useAddNewNoteMutation } from "./notesApiSlice"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
+import useAuth from "../../hooks/useAuth"
+
 
 const NewNoteForm = ({ users }) => {
 
@@ -17,8 +19,9 @@ const NewNoteForm = ({ users }) => {
 
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
-    console.log(users)
+    //console.log(users)
     const [userId, setUserId] = useState('')
+    
 
     useEffect(() => {
         if (isSuccess) {
@@ -29,16 +32,21 @@ const NewNoteForm = ({ users }) => {
         }
     }, [isSuccess, navigate])
 
+    const {username} = useAuth()
+    console.log(username)
+    
+
     const onTitleChanged = e => setTitle(e.target.value)
     const onTextChanged = e => setText(e.target.value)
     const onUserIdChanged = e => setUserId(e.target.value)
+
 
     const canSave = [title, text, userId].every(Boolean) && !isLoading
 
     const onSaveNoteClicked = async (e) => {
         e.preventDefault()
         if (canSave) {
-            await addNewNote({ user: userId, title, text })
+            await addNewNote({ user: userId, title, text})
         }
     }
 
