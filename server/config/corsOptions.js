@@ -6,7 +6,7 @@ const corsOptions = {
             callback(null, true)
         } else {
             const origin_check = allowedOrigins.indexOf(origin)
-            callback(new Error(`Not allowed by CORS and the origin is: ${origin}  ${origin_check}`))
+            callback(new Error(`Not allowed by CORS and the origin is: ${origin}  ${origin_check} ${allowedOrigins}`))
         }
     },
     credentials: true,
