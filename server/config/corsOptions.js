@@ -1,8 +1,9 @@
 const allowedOrigins = require('./allowedOrigins')
 
 const corsOptions = {
-    origin: (origin, callback) => {    
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    origin: (origin, callback) => {   
+        //allowed origin check was removed just to support deployment. 
+        if (!origin) {
             callback(null, true)
         } else {
             const origin_check = allowedOrigins.indexOf(origin)
